@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Paper and ink. The ink carries a trace of the mark's indigo plate. */
+  --color-paper: #ffffff;
+  --color-ink: #0c0a17;
+  --color-night: #07060d;
+  --color-plate: #100828;
+  --color-mute: #7d7c86;
+  --color-soft: #a6a5ae;
+  --color-line: #e6e6ea;
+  --color-mist: #f2f2f4;
+  --color-cloud: #ececef;
+  --color-smoke: #2c2b33;
+
+  /* Product accents */
+  --color-violet: #6d4cf0;
+  --color-violet-soft: #c9bcff;
+  --color-cobalt: #4a78d1;
+  --color-cobalt-soft: #bcd0f2;
+  --color-jade: #16935b;
+  --color-jade-soft: #bfe3cf;
+  --color-ember: #f07a2e;
+  --color-up: #0e9f5f;
+  --color-down: #e0484f;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-violet);
+  color: #fff;
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 44px;
+    }
+  }
+
+  .h-display {
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn-dark {
+    background: var(--color-ink);
+    color: #fff;
+  }
+  .btn-dark:hover {
+    background: #2a2838;
+  }
+  .btn-light {
+    background: #f1f1f3;
+    color: var(--color-ink);
+  }
+  .btn-light:hover {
+    background: #ffffff;
+  }
+  .btn-ghost {
+    background: #e9e9ec;
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover {
+    background: #dcdce1;
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    background: #ececef;
+    color: #5b5a64;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+  }
+
+  .mono-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    padding: 3px 7px;
+    background: #fff;
+    white-space: nowrap;
+  }
+
+  .dotted-rows {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 18px,
+      #e2e2e6 18px,
+      #e2e2e6 19px
+    );
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+  width: max-content;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+.caret {
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.reveal {
+  opacity: 0;
+}
+.reveal.is-in {
+  animation: rise 0.9s var(--ease-soft) forwards;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .caret {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+  }
+  .reveal.is-in {
+    animation: none;
+  }
+}
