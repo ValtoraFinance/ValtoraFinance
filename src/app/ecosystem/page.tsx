@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Directory } from "@/components/ecosystem/Directory";
-import { ContactSection } from "@/components/product/Sections";
 
 export const metadata: Metadata = {
   title: "Ecosystem",
-  description: "Chains, wallets and tools that work with Valtora Finance today, and the seats still open before launch.",
+  description: "The protocols, tools and wallets Valtora Finance builds on, all already live on Robinhood Chain.",
 };
 
 export default function EcosystemPage() {
@@ -14,8 +13,8 @@ export default function EcosystemPage() {
         <div className="wrap text-center">
           <h1 className="text-[44px] font-medium tracking-[-0.035em] md:text-[56px]">Valtora Ecosystem</h1>
           <p className="mx-auto mt-5 max-w-[560px] text-[15px] leading-relaxed text-white/75">
-            The chains, wallets and tools that already work with Valtora, and the roles we still want to fill, so
-            well-built financial products can reach any wallet.
+            Valtora builds on protocols that are already live and audited on Robinhood Chain, instead of rebuilding them.
+            Here is every one the site and the roadmap depend on.
           </p>
         </div>
         <div className="mt-24 grid grid-cols-4 gap-2 px-2 pb-2 md:grid-cols-8 md:gap-3 md:px-3 md:pb-3">
@@ -36,7 +35,6 @@ export default function EcosystemPage() {
           <Directory />
         </div>
       </section>
-      <ContactSection title="Take an Open Seat." />
     </>
   );
 }

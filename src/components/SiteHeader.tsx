@@ -10,7 +10,7 @@ import { Logo, Mark, NavIcon, XIcon, GithubIcon } from "@/components/icons";
 import { CopyCaPill } from "@/components/CopyCa";
 import { NavWallet } from "@/components/wallet/WalletButton";
 
-const DARK_PREFIXES = ["/insights", "/blog", "/team", "/ecosystem", "/app", "/token", "/grants", "/learn"];
+const DARK_PREFIXES = ["/insights", "/blog", "/ecosystem", "/token", "/learn", "/terminal", "/transparency", "/roadmap"];
 
 function useScrolled(limit = 40) {
   const [scrolled, setScrolled] = useState(false);
@@ -281,9 +281,11 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         <a href={BRAND.x} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on X`} className="grid size-10 place-items-center rounded-full bg-white/10">
           <XIcon />
         </a>
-        <a href={BRAND.github} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on GitHub`} className="grid size-10 place-items-center rounded-full bg-white/10">
-          <GithubIcon />
-        </a>
+        {BRAND.github && (
+          <a href={BRAND.github} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on GitHub`} className="grid size-10 place-items-center rounded-full bg-white/10">
+            <GithubIcon />
+          </a>
+        )}
       </div>
     </div>
   );

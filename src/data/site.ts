@@ -21,26 +21,19 @@ export const NAV: NavMenu[] = [
     feature: true,
     groups: [
       {
-        label: "Assets",
+        label: "Live now",
         items: [
-          { label: "VYLD", tag: "At launch", href: "/yield", blurb: "A dollar yield note that travels like a stablecoin.", icon: "yield" },
-          { label: "VTSY", tag: "For treasury desks", href: "/treasury", blurb: "Short-dated government debt, held on-chain.", icon: "treasury" },
-        ],
-      },
-      {
-        label: "Platforms & Protocols",
-        items: [
-          { label: "Valtora Equities", tag: "At launch", href: "/equities", blurb: "Listed-share exposure as transferable tokens.", icon: "equities" },
-          { label: "Valtora Rails", tag: "For issuers", href: "/#rails", blurb: "Always-on mint and redeem for tokenized funds.", icon: "rails" },
+          { label: "Valtora Terminal", tag: "Live", href: "/terminal", blurb: "Every official stock token, verified on-chain and priced two ways.", icon: "rails" },
+          { label: "Lookalike Checker", tag: "Live", href: "/terminal#verify", blurb: "Paste any address. The chain says if it is the real token.", icon: "trust" },
           { label: `${BRAND.symbol}`, href: "/token", blurb: "The project token on Robinhood Chain.", icon: "token" },
         ],
       },
       {
-        label: "Infrastructure",
+        label: "On the roadmap",
         items: [
-          { label: "Valtora Network", href: "/insights/valtora-network-settlement-layer", blurb: "A settlement layer shaped around market hours that never close.", icon: "network" },
-          { label: "Bridge", href: "/app?tab=bridge", blurb: "Move Valtora assets between supported chains.", icon: "bridge" },
-          { label: "Converter", href: "/app?tab=convert", blurb: "Switch between accruing and rebasing units.", icon: "convert" },
+          { label: "Treasury Route", tag: "Live", href: "/treasury", blurb: "Swap into SGOV, the verified treasury bill token.", icon: "treasury" },
+          { label: "Yield Vault", tag: "M2", href: "/yield", blurb: "A USDG vault on Morpho, curated in public.", icon: "yield" },
+          { label: "Valtora Index", tag: "M3", href: "/equities", blurb: "A basket of verified stock tokens, priced by Chainlink.", icon: "equities" },
         ],
       },
     ],
@@ -51,9 +44,10 @@ export const NAV: NavMenu[] = [
       {
         label: "Resources",
         items: [
-          { label: "Insights", href: "/insights", blurb: "Research notes, essays and market commentary.", icon: "insights" },
+          { label: "Insights", href: "/insights", blurb: "Research notes on tokenized assets.", icon: "insights" },
           { label: "Blog", href: "/blog", blurb: "Product news and release notes.", icon: "blog" },
           { label: "Valtora Learn", href: "/learn", blurb: "Plain-language lessons on tokenized assets.", icon: "learn" },
+          { label: "Docs & FAQs", href: "/docs", blurb: "How the products, token and app work.", icon: "docs" },
         ],
       },
     ],
@@ -64,8 +58,7 @@ export const NAV: NavMenu[] = [
       {
         label: "Ecosystem",
         items: [
-          { label: "Valtora Ecosystem", href: "/ecosystem", blurb: "Chains, wallets and tools the platform works with.", icon: "ecosystem" },
-          { label: "Builder Grants", href: "/grants", blurb: "Support for teams building on tokenized assets.", icon: "grants" },
+          { label: "Valtora Ecosystem", href: "/ecosystem", blurb: "Chains, wallets and protocols Valtora builds on.", icon: "ecosystem" },
         ],
       },
     ],
@@ -76,11 +69,10 @@ export const NAV: NavMenu[] = [
       {
         label: "About",
         items: [
-          { label: "Docs & FAQs", href: "/docs", blurb: "How the products, token and app work.", icon: "docs" },
-          { label: "Trust & Security", href: "/trust", blurb: "How assets, keys and code are protected.", icon: "trust" },
-          { label: "Careers", href: "/team#careers", blurb: "Open seats on a small, remote team.", icon: "careers" },
-          { label: "Team", href: "/team", blurb: "Why we build and who does the work.", icon: "team" },
-          { label: "Contact Us", href: "/contact", blurb: "Questions, partnerships and press.", icon: "contact" },
+          { label: "Transparency", href: "/transparency", blurb: "Every project address and live balance.", icon: "network" },
+          { label: "Roadmap", href: "/roadmap", blurb: "Milestones and the treasury that funds them.", icon: "grants" },
+          { label: "Trust & Security", href: "/trust", blurb: "What we commit to before anything holds value.", icon: "trust" },
+          { label: "Contact", href: "/contact", blurb: `Reach the team on X at ${BRAND.xHandle}.`, icon: "contact" },
         ],
       },
     ],
@@ -89,21 +81,22 @@ export const NAV: NavMenu[] = [
 
 export const FOOTER_COLUMNS: { title: string; links: { label: string; href: string; external?: boolean }[] }[] = [
   {
-    title: "Invest",
+    title: "Products",
     links: [
-      { label: "VYLD", href: "/yield" },
-      { label: "VTSY", href: "/treasury" },
-      { label: "Bridge", href: "/app?tab=bridge" },
-      { label: "Convert", href: "/app?tab=convert" },
-      { label: "Valtora Equities", href: "/equities" },
+      { label: "Terminal", href: "/terminal" },
+      { label: "Lookalike Checker", href: "/terminal#verify" },
+      { label: "Treasury Route", href: "/treasury" },
+      { label: "Yield Vault", href: "/yield" },
+      { label: "Valtora Index", href: "/equities" },
     ],
   },
   {
-    title: "Partners",
+    title: "Project",
     links: [
-      { label: "Ecosystem", href: "/ecosystem" },
-      { label: "Builder Grants", href: "/grants" },
       { label: `${BRAND.symbol} Token`, href: "/token" },
+      { label: "Transparency", href: "/transparency" },
+      { label: "Roadmap", href: "/roadmap" },
+      { label: "Ecosystem", href: "/ecosystem" },
     ],
   },
   {
@@ -112,244 +105,18 @@ export const FOOTER_COLUMNS: { title: string; links: { label: string; href: stri
       { label: "Insights", href: "/insights" },
       { label: "Docs", href: "/docs" },
       { label: "Trust & Security", href: "/trust" },
-      { label: "Bug Bounty", href: "/trust#bounty" },
+      { label: "Bug Reports", href: "/trust#bounty" },
     ],
   },
   {
-    title: "Company",
+    title: "Contact",
     links: [
-      { label: "Team", href: "/team" },
-      { label: "Careers", href: "/team#careers" },
+      { label: `X ${BRAND.xHandle}`, href: BRAND.x, external: true },
       { label: "Media Kit", href: "/media" },
-      { label: "Contact Us", href: "/contact" },
-      { label: "Media Inquiries", href: `mailto:${BRAND.email}` },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];
-
-/* ------------------------------------------------------------------ */
-/* Products                                                            */
-/* ------------------------------------------------------------------ */
-
-export type ProductKey = "equities" | "yield" | "treasury";
-
-export type Product = {
-  key: ProductKey;
-  name: string;
-  full: string;
-  href: string;
-  accent: string;
-  accentSoft: string;
-  tint: string;
-  deep: string;
-  summary: string;
-  badge?: string;
-  typed: string[];
-  typedLead: string;
-  heroCopy: string;
-  primaryCta: string;
-  secondaryCta: string;
-  /** Headline numbers on the product hero. Nothing here is live yet. */
-  stats: { label: string; value: string; note?: string }[];
-  performance: { title: string; body: string };
-  details: { label: string; value: string }[];
-  features: { title: string; body: string }[];
-  variants?: { name: string; kind: string; body: string; example: string }[];
-  useCases: { title: string; body: string }[];
-  holdings: { share: string; position: string; weight: string; maturity: string; yield: string }[];
-  faqs: { q: string; a: string }[];
-};
-
-export const PRODUCTS: Product[] = [
-  {
-    key: "equities",
-    name: "Valtora Equities",
-    full: "Valtora Equities",
-    href: "/equities",
-    accent: "#6d4cf0",
-    accentSoft: "#c9bcff",
-    tint: "#efebff",
-    deep: "#2a1a6e",
-    badge: "At launch",
-    summary:
-      "Valtora Equities is the planned venue for share exposure on Robinhood Chain: tokens that follow listed companies and can move between wallets and apps like any other asset.",
-    typedLead: "The Open Standard for",
-    typed: ["Tokenized Shares", "Tokenized Funds", "Global Portfolios"],
-    heroCopy:
-      "A planned platform that carries listed-share exposure on-chain, as tokens you can hold, send and plug into on-chain apps, subject to eligibility rules at launch.",
-    primaryCta: "Join the Launch List",
-    secondaryCta: "Read the Docs",
-    stats: [
-      { label: "Launch basket", value: "12 names", note: "planned" },
-      { label: "Network", value: "Robinhood Chain" },
-      { label: "Holders", value: "—", note: "at launch" },
-    ],
-    performance: {
-      title: "Markets That Keep Your Hours.",
-      body: "Traditional exchanges close at night and on weekends. A token does not. Valtora Equities is designed so positions can be opened, moved and settled when you are ready, with the underlying share market as the reference.",
-    },
-    details: [
-      { label: "Eligibility", value: "Set per jurisdiction at launch" },
-      { label: "Reference assets", value: "Listed shares and exchange-traded funds" },
-      { label: "Settlement", value: "On-chain, Robinhood Chain" },
-      { label: "Transferability", value: "Wallet to wallet, subject to rules" },
-      { label: "Corporate actions", value: "Reflected in token supply or price" },
-      { label: "Status", value: "In design, not yet issued" },
-    ],
-    features: [
-      { title: "Always Open", body: "Mint and redeem windows planned for every day of the week, not only exchange hours." },
-      { title: "Transferable", body: "Send exposure between wallets without a broker transfer form." },
-      { title: "Composable", body: "Use positions as collateral or liquidity in on-chain apps that support them." },
-      { title: "Clear Backing", body: "Each token maps to a documented reference holding, published on a schedule." },
-      { title: "Low Minimums", body: "Fractional units from the first day, sized in dollars rather than shares." },
-      { title: "Readable Rules", body: "Eligibility and limits written in plain language before anything goes live." },
-    ],
-    useCases: [
-      { title: "Weekend Rebalancing", body: "Adjust a portfolio when news breaks, not on Monday morning." },
-      { title: "Collateral", body: "Post share exposure into lending markets that accept it." },
-      { title: "Global Access", body: "Reach listed markets from a wallet, where rules allow." },
-      { title: "Treasury Diversification", body: "Hold a slice of equity exposure beside stable assets." },
-    ],
-    holdings: [
-      { share: "—", position: "Reference share basket", weight: "—", maturity: "n/a", yield: "—" },
-      { share: "—", position: "Dollar cash buffer", weight: "—", maturity: "1 day", yield: "—" },
-    ],
-    faqs: [
-      { q: "Can I buy Valtora Equities today?", a: "No. The product is in design. Nothing is issued yet, and this page describes the plan." },
-      { q: "Is a token the same as owning the share?", a: "No. A token gives economic exposure to a reference asset under the terms published at launch. It does not make you a registered shareholder." },
-      { q: "Where will it run?", a: "On Robinhood Chain, an Ethereum-compatible network. You will need a wallet that can add custom networks." },
-      { q: "Who will be eligible?", a: "Eligibility depends on where you live. The rules will be published before launch, and some regions will be excluded." },
-    ],
-  },
-  {
-    key: "yield",
-    name: "VYLD",
-    full: "Valtora Yield Note",
-    href: "/yield",
-    accent: "#4a78d1",
-    accentSoft: "#bcd0f2",
-    tint: "#e4edfb",
-    deep: "#1c3a73",
-    badge: "At launch",
-    summary:
-      "A planned dollar note designed to move like a stablecoin while passing through the return of short-term government debt.",
-    typedLead: "The New Standard for",
-    typed: ["Idle Dollars", "Payments", "Savings"],
-    heroCopy:
-      "VYLD is a planned yield-bearing dollar token. It is designed to accrue value every day while staying simple to send, hold and use across on-chain apps.",
-    primaryCta: "Join the Launch List",
-    secondaryCta: "Redeem (at launch)",
-    stats: [
-      { label: "Price", value: "—", note: "at launch" },
-      { label: "Target yield", value: "—", note: "set at launch" },
-      { label: "TVL", value: "—", note: "at launch" },
-    ],
-    performance: {
-      title: "Quiet, Daily Accrual.",
-      body: "VYLD is designed so that value builds a little every day, the way a savings balance does, while the token itself stays freely transferable. The chart shows an illustrative path, not a record.",
-    },
-    details: [
-      { label: "Eligibility", value: "Non-restricted regions, confirmed at launch" },
-      { label: "Reference assets", value: "Short-term government bills and bank deposits" },
-      { label: "Liquidity", value: "Daily mint and redeem, planned" },
-      { label: "Transferability", value: "Freely transferable, planned" },
-      { label: "Structure", value: "Documented at launch" },
-      { label: "Use", value: "Cash management and collateral" },
-      { label: "Network", value: "Robinhood Chain" },
-    ],
-    features: [
-      { title: "Widely Usable", body: "Built to plug into wallets, exchanges and on-chain apps that list it." },
-      { title: "Yield-Bearing", body: "Designed to pass through the return of the reference assets." },
-      { title: "Permissionless Transfers", body: "Move VYLD between wallets and contracts without a gatekeeper." },
-      { title: "Daily Liquidity", body: "Mint and redeem windows planned every day, including weekends." },
-      { title: "Published Reserves", body: "Reserve reports are planned on a fixed schedule, from a third party." },
-      { title: "Ring-Fenced", body: "Reference assets are to be held apart from operating funds." },
-    ],
-    variants: [
-      { name: "VYLD", kind: "Accruing", body: "The unit price rises as yield accrues. Your token count stays the same.", example: "Hold 100 VYLD at $1.00. Later, the same 100 tokens are each worth a little more." },
-      { name: "rVYLD", kind: "Rebasing", body: "The unit price stays at $1. Yield arrives as new tokens in your wallet.", example: "Hold 100 rVYLD at $1.00. Later, you hold slightly more than 100 tokens at $1.00." },
-    ],
-    useCases: [
-      { title: "On-chain Savings", body: "Park dollars in a token that is designed to grow." },
-      { title: "Collateral", body: "Post a yield-bearing asset into lending markets." },
-      { title: "Payments", body: "Pay and settle in a dollar unit that keeps earning." },
-      { title: "Treasury", body: "Hold operating cash for a DAO or company on-chain." },
-    ],
-    holdings: [
-      { share: "—", position: "Short-term government bills", weight: "—", maturity: "< 90 days", yield: "—" },
-      { share: "—", position: "Bank deposits", weight: "—", maturity: "1 day", yield: "—" },
-    ],
-    faqs: [
-      { q: "What is a yield-bearing dollar token?", a: "A token that tracks the dollar while passing through interest earned on the assets behind it." },
-      { q: "Is VYLD live?", a: "No. It is planned. Figures on this page are placeholders until launch." },
-      { q: "How will I mint or redeem?", a: "Through the Valtora app on Robinhood Chain, once eligibility checks are in place." },
-      { q: "Does VYLD have a fixed yield?", a: "No. Any return depends on the reference assets and will change over time." },
-    ],
-  },
-  {
-    key: "treasury",
-    name: "VTSY",
-    full: "Valtora Treasury Ledger",
-    href: "/treasury",
-    accent: "#16935b",
-    accentSoft: "#bfe3cf",
-    tint: "#e3f3ea",
-    deep: "#0f4a31",
-    badge: "For treasury desks",
-    summary:
-      "Built for treasury desks, VTSY is a planned token for exposure to short-dated government debt, with minting and redemption around the clock.",
-    typedLead: "The Treasury Standard for",
-    typed: ["Dollar Yield", "Idle Reserves", "On-chain Desks"],
-    heroCopy:
-      "VTSY is a planned token for professional holders who want short-dated government debt on-chain, with instant mint and redeem windows and reporting you can check.",
-    primaryCta: "Request Access",
-    secondaryCta: "Redeem (at launch)",
-    stats: [
-      { label: "Price", value: "—", note: "at launch" },
-      { label: "Target yield", value: "—", note: "set at launch" },
-      { label: "TVL", value: "—", note: "at launch" },
-    ],
-    performance: {
-      title: "Steady by Design.",
-      body: "VTSY is shaped around the slow, steady return of short-dated government debt. The line below is an illustrative model of how accrual works, not a performance record.",
-    },
-    details: [
-      { label: "Eligibility", value: "Professional holders, confirmed at launch" },
-      { label: "Reference assets", value: "Short-dated government bills" },
-      { label: "Minimum mint", value: "Set at launch" },
-      { label: "Minimum redemption", value: "Set at launch" },
-      { label: "Fees", value: "Published before launch" },
-      { label: "Liquidity", value: "24/7 mint and redeem, planned" },
-      { label: "Network", value: "Robinhood Chain" },
-    ],
-    features: [
-      { title: "Yield-Bearing", body: "Built to track short-dated government debt returns." },
-      { title: "Always-On Liquidity", body: "Mint and redeem planned at any hour, any day." },
-      { title: "Low Minimums", body: "Entry sizes designed for desks of every size." },
-      { title: "Quality Assets", body: "Reference holdings limited to short-dated government paper." },
-      { title: "Reported Daily", body: "Holdings and value published every day, planned." },
-      { title: "Clear Eligibility", body: "Access rules written out before the first mint." },
-    ],
-    useCases: [
-      { title: "Cash Management", body: "Hold reserves in an asset that keeps working." },
-      { title: "Lending", body: "Use VTSY as collateral where it is accepted." },
-      { title: "Settlement", body: "Settle between desks without waiting on bank hours." },
-    ],
-    holdings: [
-      { share: "—", position: "Government bills, 1–3 months", weight: "—", maturity: "< 90 days", yield: "—" },
-      { share: "—", position: "Government bills, 3–6 months", weight: "—", maturity: "< 180 days", yield: "—" },
-      { share: "—", position: "Dollar cash", weight: "—", maturity: "1 day", yield: "—" },
-    ],
-    faqs: [
-      { q: "Who is VTSY for?", a: "Professional holders such as funds, desks and companies. Eligibility will be confirmed at launch." },
-      { q: "Is VTSY live?", a: "No. It is planned, and every figure on this page is a placeholder until launch." },
-      { q: "What backs VTSY?", a: "The plan is short-dated government bills plus a small cash buffer, reported on a schedule." },
-      { q: "What is the minimum?", a: "Minimum sizes will be published before the first mint." },
-    ],
-  },
-];
-
-export const productByKey = (key: ProductKey) => PRODUCTS.find((p) => p.key === key)!;
 
 /* ------------------------------------------------------------------ */
 /* Articles (insights, blog, news carousel)                            */
@@ -370,166 +137,106 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
-    slug: "valtora-network-settlement-layer",
-    title: "Introducing the Valtora Network: Settlement Shaped for Markets That Never Close",
+    slug: "introducing-valtora",
+    title: "Introducing Valtora: Built First, Funded by Use",
     kind: "Update",
-    topic: "Valtora Network",
-    date: "2026-09-22",
+    topic: "Valtora",
+    date: "2026-09-25",
     excerpt:
-      "Our plan for a settlement layer that treats nights, weekends and holidays as ordinary trading hours, built on Robinhood Chain.",
+      "What Valtora is, what already works on launch day, and why every later milestone waits for the treasury instead of a promise.",
     art: 0,
     featured: true,
     blog: true,
     body: [
-      "Most of the world's financial plumbing was designed around office hours. Trades clear on business days, money moves when banks are open, and anything that happens on a Saturday waits until Monday. That made sense when every step involved paperwork. It makes less sense when the asset is a token and the ledger is always on.",
-      "The Valtora Network is our name for the settlement layer we are designing on Robinhood Chain. Its job is simple to describe: when two parties agree to swap a tokenized asset for dollars, both sides should move together, at any hour, with a record anyone can check.",
-      "In practice that means three components. A mint and redeem path that is open every day. A pricing rule that says which reference price applies when the underlying market is closed. And a reporting feed that publishes holdings on a fixed schedule, so the numbers behind each token are not a matter of trust.",
-      "None of this is live yet. We are publishing the design early because the rules matter more than the code, and we would rather hear objections now than after launch. The documentation section of this site will be updated as each piece is specified.",
+      "Robinhood Chain already carries real stock tokens, Chainlink price feeds for them, Uniswap pools that trade them around the clock and Morpho markets that lend against them. What it lacks is a clear, trustworthy view of all of that in one place. Valtora starts there.",
+      "On launch day the Valtora Terminal is live. It lists every official stock token that has a Chainlink feed on Robinhood Chain, checks each contract against Robinhood's own token contract, and prices every asset twice: once by its oracle and once by its deepest pool. Next to it sits a lookalike checker, because dozens of tokens borrow famous tickers and some of them look more convincing than the real ones.",
+      "Everything after that is on the roadmap, and every milestone has a price. A treasury route into short-dated treasury exposure, a USDG vault on Morpho, and a basket index of verified stock tokens each unlock when the treasury has received enough creator fees to pay for them. Progress is read from the chain, so nobody has to take our word for it.",
+      "Valtora is run by an anonymous team that speaks only through its X account. That is why the Transparency page lists every address the project controls, with balances read live from Robinhood Chain. You should not need to know who we are to check what we do.",
     ],
   },
   {
-    slug: "why-robinhood-chain",
-    title: "Why We Chose Robinhood Chain for Tokenized Assets",
-    kind: "Article",
-    topic: "Infrastructure",
-    date: "2026-09-18",
+    slug: "real-stock-token-or-lookalike",
+    title: "How to Tell a Real Stock Token From a Lookalike",
+    kind: "Explainer",
+    topic: "Terminal",
+    date: "2026-09-25",
     excerpt:
-      "An Ethereum-compatible network with a clear focus on real-world assets. Here is what we weighed before committing.",
+      "A ticker is not an identity. Three checks, all readable on-chain, separate an official Robinhood stock token from a copy.",
     art: 1,
     featured: true,
     blog: true,
     body: [
-      "Picking a home network for tokenized assets is less about raw speed and more about fit. We looked for three things: compatibility with the tools holders already use, a community that cares about real-world assets, and costs low enough that small positions make sense.",
-      "Robinhood Chain is Ethereum-compatible, which means standard wallets such as MetaMask and Rabby can connect with a single network addition. Contracts written for Ethereum run without rewrites, and existing security tooling carries over.",
-      "Fees are low enough that daily accrual and small transfers are practical. That matters for a yield-bearing token, where the whole point is that value builds a little at a time.",
-      `We will keep the door open to other networks later, through a bridge, but Robinhood Chain is where Valtora starts and where the ${BRAND.symbol} token lives.`,
+      "Anyone can deploy a token called NVDA. On Robinhood Chain, many people have. When we last resolved our asset list, the search results for our 36 tickers contained 38 other tokens trading under the same names, from near-empty pools to tokens with polished logos and whole communities behind them.",
+      "Official Robinhood stock tokens share one piece of code. Each one is a small proxy that points at the same Robinhood-controlled contract, called a beacon. A copy can use the same name and symbol, but it cannot point at that beacon and still be a Robinhood token, because only Robinhood can issue through it.",
+      "So the check has three parts. First, the contract's own code must reference Robinhood's beacon. Second, its symbol must be exactly the ticker. Third, its name must end in \"Robinhood Token\", the suffix every official token carries. The terminal applies all three to every asset it lists.",
+      "The lookalike checker on the terminal page runs the same test on any address you paste. It reads the answer from the contract itself on Robinhood Chain, not from a list we maintain, so it works for tokens we have never seen.",
     ],
   },
   {
-    slug: "accruing-vs-rebasing",
-    title: "Accruing or Rebasing? Two Ways to Hold a Yield-Bearing Dollar",
+    slug: "oracle-price-vs-market-price",
+    title: "Oracle Price, Market Price and the Gap Between Them",
     kind: "Explainer",
-    topic: "VYLD",
-    date: "2026-09-12",
+    topic: "Terminal",
+    date: "2026-09-25",
     excerpt:
-      "One token grows in price, the other grows in quantity. Both are planned for VYLD, and you can switch between them.",
+      "Why the terminal shows two prices for every stock token, and what it means when they drift apart on a Sunday.",
     art: 2,
     featured: true,
-    blog: true,
     body: [
-      "A yield-bearing dollar has to show its return somewhere. There are two common answers, and VYLD is planned to support both.",
-      "An accruing token keeps your balance fixed and lets the price rise. If you hold 100 units, you still hold 100 units next month, but each is worth slightly more. This is simple for accounting and works well as collateral.",
-      "A rebasing token keeps the price pinned to one dollar and adds new units to your wallet instead. You see the return as a growing balance, which feels familiar if you are used to a savings account.",
-      "The converter in the Valtora app is designed to switch between the two at the current rate, with no spread. Until launch, the converter is visible but disabled.",
+      "Every asset in the terminal has two prices. The oracle price comes from a Chainlink feed on Robinhood Chain. It follows the listed share during US market hours, five days a week, and updates when the price moves by half a percent or once a day at the latest.",
+      "The market price comes from the deepest Uniswap pool for that token. Pools trade every hour of every day, including weekends and holidays, when the listed market is closed and the oracle stands still.",
+      "The gap between the two is information. During market hours it is usually a fraction of a percent. Over a weekend it can widen as on-chain traders react to news the listed market has not priced yet, and it tends to close again when trading resumes.",
+      "A wide gap is not automatically an opportunity. Thin pools move easily, and a stale oracle can be the side that is wrong. The terminal shows how old each oracle reading is and how deep each pool is, so you can judge which number to trust.",
     ],
   },
   {
-    slug: "tokenized-treasuries-primer",
-    title: "A Primer on Tokenized Government Debt",
+    slug: "distribution-multiplier",
+    title: "Dividends Without Transfers: The Distribution Multiplier",
     kind: "Research",
-    topic: "VTSY",
-    date: "2026-09-05",
+    topic: "Terminal",
+    date: "2026-09-25",
     excerpt:
-      "What a tokenized bill is, what it is not, and the questions every holder should ask before buying one.",
+      "Robinhood stock tokens credit dividends by raising an on-chain multiplier, not by sending tokens. Here is how to read it.",
     art: 3,
     body: [
-      "Short-dated government bills are one of the plainest assets in finance: a promise to repay a fixed amount on a near date. Tokenizing them does not change that promise. It changes how ownership is recorded and moved.",
-      "A tokenized bill product usually holds the bills through a legal entity and issues tokens that represent a share of that entity's assets. The token is only as good as that structure, so the first question is always: who holds the assets, and what happens if the issuer fails?",
-      "The second question is reporting. How often are holdings published, and who checks them? Daily reports from an independent party are the standard we are designing VTSY against.",
-      "The third is liquidity. Can you redeem at any hour, or only on business days? Always-on redemption is one of the main reasons to hold a tokenized version at all.",
+      "When a listed company pays a dividend, holders of the matching Robinhood stock token do not receive new tokens or a cash transfer. Instead, the token contract raises a number called the UI multiplier. The balance stored on-chain stays the same, and the multiplier scales what that balance is worth.",
+      "A multiplier of 1.0 means nothing has been distributed since the token was created. A multiplier of 1.0008 means distributions so far are worth 0.08% of a position. The terminal shows this as the Distributions column.",
+      "This matters for anyone building on top of stock tokens. A contract that only counts raw balances will slowly understate what it holds. Valtora's index, planned for milestone M3, values each position with the multiplier applied, and its price oracle will do the same.",
+      "The same contract also lets its issuer pause transfers, block addresses and burn balances. Those powers sit with Robinhood, not with Valtora, and they apply to every holder, including any contract that holds the tokens.",
     ],
   },
   {
-    slug: "reading-a-reserve-report",
-    title: "How to Read a Reserve Report in Five Minutes",
-    kind: "Explainer",
-    topic: "Trust",
-    date: "2026-08-29",
+    slug: "sgov-on-chain",
+    title: "Treasury Exposure Without a New Token: SGOV On-chain",
+    kind: "Research",
+    topic: "Treasury Route",
+    date: "2026-09-25",
     excerpt:
-      "Reserve reports can look dense. Four numbers tell you most of what you need to know.",
+      "An official token for a 0–3 month treasury bill ETF already trades on Robinhood Chain. Valtora's first product routes to it instead of issuing its own.",
     art: 4,
     blog: true,
     body: [
-      "A reserve report is a snapshot of what backs a token at a point in time. It can run to many pages, but four numbers carry most of the weight.",
-      "Tokens outstanding: how many units exist. Value of reserves: what the assets behind them are worth. Collateral ratio: the second number divided by the first. And weighted maturity: how long, on average, until the assets pay back.",
-      "A ratio at or above one means the reserves cover the tokens. A short maturity means the assets can be turned into cash quickly. Beyond that, check the date of the report and who signed it.",
-      "Valtora plans to publish these four figures on each product page once products are live. Until then, the tables show dashes rather than invented numbers.",
+      "Tokenized treasuries usually mean a new issuer, a custodian, a legal wrapper and a promise that the bills exist. An anonymous team cannot credibly offer any of that, so we will not try.",
+      "Robinhood Chain already has an official stock token for SGOV, an exchange-traded fund that holds US treasury bills maturing within three months. It has a Chainlink feed, Uniswap pools with millions of dollars of liquidity, and its distributions arrive through the same on-chain multiplier as every other Robinhood stock token.",
+      "The Treasury Route, milestone M1, is a direct path from USDG into that token through existing pools. No Valtora contract holds your funds at any point: the swap settles straight into your wallet, and you can leave the same way.",
+      "SGOV is still an ETF share wrapped in a token. Its price moves, its issuer can freeze it, and it is only available in supported regions. The route makes it easier to reach. It does not make it risk-free.",
     ],
   },
   {
-    slug: "the-valtora-token",
-    title: `${BRAND.symbol}: What the Token Is For`,
+    slug: "where-the-money-goes",
+    title: "Where the Money Goes: Treasury, Dev Wallet and Milestones",
     kind: "Update",
-    topic: `${BRAND.symbol}`,
-    date: "2026-08-24",
+    topic: "Transparency",
+    date: "2026-09-25",
     excerpt:
-      "A short note on the project token, where it lives, and how to check the contract address.",
+      "How creator fees and dev wallet sales fund Valtora, and how anyone can follow every payment on-chain.",
     art: 5,
     blog: true,
     body: [
-      `${BRAND.symbol} is the project token of Valtora Finance on Robinhood Chain. It is a crypto token, not a share in a company and not a claim on any fund or reserve.`,
-      "The only contract address we recognise is the one shown in the header of this site and on the token page. Anyone can deploy a token with the same name, so always compare the full address before you interact with a contract.",
-      "Until the address is published, the site shows a placeholder. Nothing is for sale through this website, and no team member will ever message you first asking for funds.",
-    ],
-  },
-  {
-    slug: "weekend-markets",
-    title: "The Case for Weekend Markets",
-    kind: "Article",
-    topic: "Markets",
-    date: "2026-08-15",
-    excerpt:
-      "News does not wait for Monday. We look at why always-on access matters for ordinary holders.",
-    art: 6,
-    body: [
-      "Big news often breaks when exchanges are closed. Holders then watch prices gap at the next open with no chance to act in between.",
-      "Tokenized exposure can narrow that gap. If a token can be minted and redeemed on a Saturday, holders can at least adjust their exposure, even if the underlying market is closed.",
-      "That raises a hard question: what price applies when the reference market is shut? Our design uses the last official close plus a published adjustment rule, and we will document the rule in full before launch.",
-    ],
-  },
-  {
-    slug: "podcast-building-in-public",
-    title: "Podcast: Building a Tokenized Asset Platform in Public",
-    kind: "Podcast",
-    topic: "Company",
-    date: "2026-08-08",
-    excerpt:
-      "Two contributors talk through the roadmap, the trade-offs, and why we publish designs before code.",
-    art: 7,
-    body: [
-      "In this episode, two Valtora contributors walk through the roadmap from the first design notes to the planned launch on Robinhood Chain.",
-      "They cover why the team publishes designs early, how eligibility rules shape the product, and what a small team can realistically ship in its first year.",
-      "A transcript will be added here when the episode is published.",
-    ],
-  },
-  {
-    slug: "collateral-that-earns",
-    title: "Collateral That Earns: Yield-Bearing Assets in Lending Markets",
-    kind: "Research",
-    topic: "DeFi",
-    date: "2026-07-30",
-    excerpt:
-      "Posting a yield-bearing token as collateral changes the maths of borrowing. Here is how.",
-    art: 8,
-    body: [
-      "When collateral earns a return, the effective cost of a loan falls by that return. That simple idea is why yield-bearing dollars are attractive in lending markets.",
-      "The trade-off is complexity. Lending protocols need a reliable price for the collateral and a clear rule for how accrual is reflected. Accruing tokens are usually easier to integrate than rebasing ones for this reason.",
-      "Any integration of Valtora assets into lending markets will be listed on the ecosystem page, with the terms of each market linked from there.",
-    ],
-  },
-  {
-    slug: "eligibility-explained",
-    title: "Eligibility, Explained Without the Legal Language",
-    kind: "Explainer",
-    topic: "Compliance",
-    date: "2026-07-21",
-    excerpt:
-      "Why some products are open to everyone, some to professionals only, and some not in certain regions.",
-    art: 9,
-    body: [
-      "Financial products are regulated differently around the world. A product that anyone can hold in one country may be limited to professionals in another, and not allowed at all in a third.",
-      "Tokenized products inherit those rules from the assets behind them. That is why each Valtora product page lists eligibility separately, and why some are marked for professional holders only.",
-      "The exact rules will be published before launch. Until then, treat every product on this site as not yet available to anyone.",
+      "Valtora has two sources of money. The launchpad sends a creator fee on every trade of the project token to the treasury address. And the dev wallet, which made a single 0.05 ETH buy at launch, sells from that position to pay for early work.",
+      "Both addresses are listed on the Transparency page with balances read live from Robinhood Chain. Once the token is live, the page links straight to every transfer out of the dev wallet.",
+      "The treasury pays for the roadmap and nothing else. Each milestone has a target in ETH, measured against everything the treasury has received, including what it has already spent. Every payment is added to a public ledger with its transaction, so paying for an audit never looks like money disappearing.",
+      "If trading slows down, so does the roadmap. We would rather publish that plainly than promise dates we cannot fund.",
     ],
   },
 ];
@@ -551,7 +258,7 @@ export function formatDate(iso: string) {
 
 export const THESES = [
   { label: "Thesis 01", role: "Settlement", quote: "Money should settle when people are ready, not when a back office opens. The ledger never sleeps, so the market should not either." },
-  { label: "Thesis 02", role: "Transparency", quote: "Every token should come with a receipt. Holdings, reserves and rules published on a schedule, where anyone can read them." },
+  { label: "Thesis 02", role: "Transparency", quote: "A project should not ask to be trusted. Every address public, every payment on-chain, every rule written down where anyone can read it." },
   { label: "Thesis 03", role: "Access", quote: "A good asset should not require a private banker. If the rules allow it, a wallet should be enough to hold it." },
   { label: "Thesis 04", role: "Composability", quote: "Assets become more useful when they can meet each other. A yield note that can be collateral is worth more than one that sits still." },
   { label: "Thesis 05", role: "Restraint", quote: "Launch fewer things and explain them well. A small product with clear rules beats a large one nobody can read." },
@@ -564,70 +271,48 @@ export const BELIEFS = [
 ];
 
 export const PRINCIPLES = [
-  { title: "Quality Reference Assets", body: "Products are designed around plain, liquid reference assets such as short-dated government debt and listed shares." },
-  { title: "Regulated Service Providers", body: "Custody, administration and audits are planned with licensed third parties, named before launch." },
-  { title: "Experienced Contributors", body: "The team brings years of work across trading, software and compliance." },
-  { title: "Audited Contracts", body: "Every contract is to be reviewed by independent auditors before it holds value." },
-  { title: "Compliance First", body: "Eligibility rules come before features. If a product cannot be offered properly, it waits." },
+  { title: "Verified Contracts", body: "Every asset in the terminal is checked against Robinhood's own token contract. Every Valtora contract will be verified and published before it takes deposits." },
+  { title: "Public Addresses", body: "The token contract, treasury and dev wallet are listed on the transparency page, with balances read live from the chain." },
+  { title: "Audited Protocols", body: "Prices come from Chainlink, lending from Morpho and swaps from Uniswap. Valtora only writes code where nothing suitable exists." },
+  { title: "Funded in the Open", body: "Milestones unlock from creator fees paid into the treasury. Every payment out of it is listed with its transaction." },
+  { title: "No Owner Keys", body: "Valtora contracts ship without an owner where possible. Anything that must change goes through a timelock anyone can watch." },
 ];
 
+/** Assets shown on the home rail. Tiles are real issuer logos in public/tiles. */
 export const RAILS_TOKENS = [
-  { name: "T-BILL", mark: "TB", color: "#3b6fd8" },
-  { name: "EQUITY", mark: "EQ", color: "#6d4cf0" },
-  { name: "BOND", mark: "BD", color: "#16935b" },
-  { name: "GOLD", mark: "AU", color: "#c49a2c" },
-  { name: "CREDIT", mark: "CR", color: "#d9573f" },
-  { name: "REIT", mark: "RE", color: "#2a9fb0" },
-  { name: "CASH", mark: "$", color: "#7a7a88" },
+  { name: "NVDA", tile: "nvda", label: "Equities" },
+  { name: "SGOV", tile: "sgov", label: "Treasury bills" },
+  { name: "GLD", tile: "gld", label: "Gold" },
+  { name: "SPY", tile: "spy", label: "Index funds" },
+  { name: "SLV", tile: "slv", label: "Silver" },
+  { name: "TSLA", tile: "tsla", label: "Equities" },
+  { name: "USO", tile: "uso", label: "Oil" },
 ];
 
-export const ASSET_CLASSES = ["Equities", "Treasuries", "Money Markets", "Commodities", "Private Credit", "Real Estate", "Funds", "Bonds"];
+export const ASSET_CLASSES = ["Equities", "ETFs", "Treasuries", "Gold", "Silver", "Oil", "Indexes", "Semiconductors"];
 
 /* ------------------------------------------------------------------ */
 /* Ecosystem                                                           */
 /* ------------------------------------------------------------------ */
 
-export type EcoEntry = { name: string; category: string; blurb: string; href?: string; status: "Works today" | "Open seat" };
+export type EcoStatus = "Used by Valtora" | "Works today";
+
+/** Logos live in public/eco/<logo>.webp (scripts/fetch-eco-logos.mjs). */
+export type EcoEntry = { name: string; category: string; blurb: string; href: string; logo: string; status: EcoStatus };
 
 export const ECOSYSTEM: EcoEntry[] = [
-  { name: "Robinhood Chain", category: "Chain", blurb: `Ethereum-compatible network where Valtora and ${BRAND.symbol} live.`, href: "https://robinhoodchain.blockscout.com", status: "Works today" },
-  { name: "Blockscout", category: "Explorer", blurb: "Public block explorer for Robinhood Chain transactions and contracts.", href: "https://robinhoodchain.blockscout.com", status: "Works today" },
-  { name: "MetaMask", category: "Wallet", blurb: "Browser wallet that can add Robinhood Chain as a custom network.", status: "Works today" },
-  { name: "Rabby", category: "Wallet", blurb: "Multi-chain browser wallet with custom network support.", status: "Works today" },
-  { name: "Rainbow", category: "Wallet", blurb: "Wallet with EIP-6963 discovery, detected automatically by the app.", status: "Works today" },
-  { name: "OKX Wallet", category: "Wallet", blurb: "Browser wallet that announces itself to the app over EIP-6963.", status: "Works today" },
-  { name: "Brave Wallet", category: "Wallet", blurb: "Built-in browser wallet that supports custom EVM networks.", status: "Works today" },
-  { name: "PublicNode", category: "Infrastructure", blurb: "Public RPC endpoint used as a read fallback by this site.", status: "Works today" },
-  { name: "Lending market", category: "DeFi", blurb: "Seat for a lending protocol that accepts Valtora assets as collateral.", status: "Open seat" },
-  { name: "Spot exchange", category: "Exchanges", blurb: `Seat for a venue listing VYLD and ${BRAND.symbol} pairs.`, status: "Open seat" },
-  { name: "Custodian", category: "Custody", blurb: "Seat for a licensed custodian holding reference assets.", status: "Open seat" },
-  { name: "Fund administrator", category: "Service Provider", blurb: "Seat for daily valuation and reserve reporting.", status: "Open seat" },
-  { name: "Auditor", category: "Service Provider", blurb: "Seat for independent contract and reserve audits.", status: "Open seat" },
-  { name: "Oracle", category: "Infrastructure", blurb: "Seat for a price feed covering reference assets.", status: "Open seat" },
-  { name: "Bridge", category: "Bridges", blurb: "Seat for a cross-chain messaging layer for Valtora assets.", status: "Open seat" },
-  { name: "Payments app", category: "Payments", blurb: "Seat for a checkout or payroll tool settling in VYLD.", status: "Open seat" },
-  { name: "Portfolio tracker", category: "Service Provider", blurb: "Seat for a dashboard that reads Valtora positions.", status: "Open seat" },
-  { name: "Derivatives venue", category: "Derivatives", blurb: "Seat for a market using Valtora assets as margin.", status: "Open seat" },
-];
-
-/* ------------------------------------------------------------------ */
-/* Team (roles only)                                                   */
-/* ------------------------------------------------------------------ */
-
-export const TEAM_ROLES = [
-  { role: "Protocol Lead", area: "Contracts & settlement", initials: "PL" },
-  { role: "Product Lead", area: "Assets & eligibility", initials: "PR" },
-  { role: "Engineering", area: "App & infrastructure", initials: "EN" },
-  { role: "Risk & Compliance", area: "Rules & reporting", initials: "RC" },
-  { role: "Design", area: "Interface & brand", initials: "DS" },
-  { role: "Community", area: "Holders & partners", initials: "CM" },
-  { role: "Research", area: "Markets & structure", initials: "RS" },
-  { role: "Operations", area: "Vendors & process", initials: "OP" },
-];
-
-export const CAREERS = [
-  { team: "Engineering", roles: ["Smart Contract Engineer", "Frontend Engineer"] },
-  { team: "Product", roles: ["Product Designer"] },
-  { team: "Risk & Compliance", roles: ["Compliance Analyst"] },
-  { team: "Community", roles: ["Community Lead"] },
+  { name: "Robinhood Chain", category: "Chain", blurb: `Ethereum-compatible network where the stock tokens, Valtora and ${BRAND.symbol} live.`, href: "https://robinhood.com", logo: "robinhood-chain", status: "Used by Valtora" },
+  { name: "Chainlink", category: "Oracle", blurb: "Price feeds for every asset in the terminal, and the ETH / USD rate used to value the treasury.", href: "https://chain.link", logo: "chainlink", status: "Used by Valtora" },
+  { name: "Morpho", category: "Lending", blurb: "Lending markets shown in the terminal, and the vault factory behind the planned Yield Vault.", href: "https://morpho.org", logo: "morpho", status: "Used by Valtora" },
+  { name: "Uniswap", category: "Exchange", blurb: "Pools that price the stock tokens around the clock, and the route for the Treasury Route.", href: "https://uniswap.org", logo: "uniswap", status: "Used by Valtora" },
+  { name: "Dexscreener", category: "Market data", blurb: "Pool prices, liquidity and volume in the terminal.", href: "https://dexscreener.com", logo: "dexscreener", status: "Used by Valtora" },
+  { name: "Robin Etherscan", category: "Explorer", blurb: "Every contract, wallet and transaction link on this site opens here.", href: "https://robin.etherscan.io", logo: "etherscan", status: "Used by Valtora" },
+  { name: "pons", category: "Launchpad", blurb: `Where ${BRAND.symbol} launches, and where its creator fees are sent to the treasury.`, href: "https://pons.family", logo: "pons", status: "Used by Valtora" },
+  { name: "Hoodlock", category: "Liquidity lock", blurb: "Holds the locked liquidity position, with a public proof page.", href: "https://hoodlock.tech", logo: "hoodlock", status: "Used by Valtora" },
+  { name: "Alchemy", category: "Infrastructure", blurb: "RPC provider for the site's chain reads.", href: "https://alchemy.com", logo: "alchemy", status: "Used by Valtora" },
+  { name: "USDG", category: "Stablecoin", blurb: "The dollar most stock token pools and lending markets on Robinhood Chain are priced in.", href: "https://paxos.com", logo: "usdg", status: "Works today" },
+  { name: "Lighter", category: "Perpetuals", blurb: "Perpetual futures venue on Robinhood Chain.", href: "https://lighter.xyz", logo: "lighter", status: "Works today" },
+  { name: "MetaMask", category: "Wallet", blurb: "Browser wallet that can add Robinhood Chain as a custom network.", href: "https://metamask.io", logo: "metamask", status: "Works today" },
+  { name: "OKX Wallet", category: "Wallet", blurb: "Browser wallet that announces itself to this site over EIP-6963.", href: "https://okx.com", logo: "okx", status: "Works today" },
+  { name: "Brave Wallet", category: "Wallet", blurb: "Built-in browser wallet that supports custom EVM networks.", href: "https://brave.com", logo: "brave", status: "Works today" },
 ];

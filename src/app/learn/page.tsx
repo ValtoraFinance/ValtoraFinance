@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Faq } from "@/components/product/Interactive";
+import { Faq } from "@/components/product/Faq";
 import { BRAND, CHAIN } from "@/config/brand";
 
 export const metadata: Metadata = {
@@ -24,15 +24,15 @@ const TRACKS: { title: string; blurb: string; lessons: { q: string; a: string }[
     lessons: [
       { q: `How do I add ${CHAIN.name}?`, a: `Press Launch App on this site and connect a wallet. If the network is missing, the site asks your wallet to add it: chain id ${CHAIN.id}, currency ${CHAIN.nativeSymbol}.` },
       { q: "Which wallets work?", a: "Browser wallets that support custom networks, such as MetaMask, Rabby, Rainbow, OKX Wallet or Brave Wallet. Some wallets only support a fixed list of networks and cannot connect." },
-      { q: "How do I spot a fake token?", a: `Anyone can create a token with any name. The only ${BRAND.symbol} is the one whose full contract address matches the address in this site's header.` },
+      { q: "How do I spot a fake token?", a: `Anyone can create a token with any name. The only ${BRAND.symbol} is the one whose full contract address matches the address in this site's header. For stock tokens, paste the address into the lookalike checker on the terminal page.` },
     ],
   },
   {
     title: "Yield and risk",
     blurb: "How return is made, and how it can be lost.",
     lessons: [
-      { q: "Where does yield come from?", a: "From the assets behind a product, such as interest on short-dated government debt. It changes over time and is never guaranteed." },
-      { q: "Accruing or rebasing?", a: "Accruing tokens rise in price; rebasing tokens keep a fixed price and add units. Both show the same return in different ways." },
+      { q: "Where does yield come from?", a: "From someone paying for something: borrowers paying interest on a lending market, or a fund paying out what its bills earn. It changes over time and is never guaranteed." },
+      { q: "How do stock tokens pay dividends?", a: "Robinhood stock tokens raise an on-chain multiplier instead of sending tokens. Your balance stays the same while what it is worth grows. The terminal shows this as Distributions." },
       { q: "What are the main risks?", a: `Smart contract bugs, issuer or custodian failure, pricing errors, regulation, and for crypto tokens like ${BRAND.symbol}, sharp price swings.` },
     ],
   },

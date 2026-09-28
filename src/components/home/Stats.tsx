@@ -68,7 +68,10 @@ function Row({ text, label, big = true }: { text: string; label: React.ReactNode
   );
 }
 
-export function Stats() {
+export type StatRow = { text: string; label: string[] };
+
+/** Rows are read on the server; the block height below is polled live. */
+export function Stats({ rows }: { rows: StatRow[] }) {
   const [block, setBlock] = useState<string | null>(null);
 
   useEffect(() => {
@@ -94,15 +97,24 @@ export function Stats() {
       <div className="wrap grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-6">
         <div>
           <h2 className="reveal text-[32px] leading-[1.05] font-medium tracking-[-0.03em] md:text-[36px] lg:sticky lg:top-40">
-            Valtora is building the foundation
+            What the terminal sees
             <br />
-            <span className="text-mute">for the next chapter of finance.</span>
+            <span className="text-mute">on Robinhood Chain right now.</span>
           </h2>
         </div>
         <div className="min-w-0 border-t border-line">
-          <Row text="01" label={<>Supported<br />Chain</>} />
-          <Row text="03" label={<>Planned<br />Products</>} />
-          <Row text="24/7" label={<>Mint & Redeem<br />Target</>} />
+          {rows.map((r) => (
+            <Row
+              key={r.label.join(" ")}
+              text={r.text}
+              big={r.text.length <= 4}
+              label={r.label.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            />
+          ))}
           <div className="py-10 md:py-14">
             <p className="flex items-center gap-2 text-[14px] font-medium text-mute">
               <span className={`size-2 rounded-full ${block ? "animate-pulse bg-up" : "bg-soft"}`} />
@@ -111,7 +123,7 @@ export function Stats() {
             <p className="mt-4 font-mono text-[44px] leading-none tracking-[-0.04em] sm:text-[64px] md:text-[80px]">
               {block ?? "—"}
             </p>
-            <p className="mt-3 font-serif text-[15px] text-mute">Read directly from the public RPC every few seconds.</p>
+            <p className="mt-3 font-serif text-[15px] text-mute">Read directly from the chain every few seconds.</p>
           </div>
         </div>
       </div>

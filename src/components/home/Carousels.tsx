@@ -143,9 +143,9 @@ export function Trust() {
       <div className="wrap relative py-20 md:py-28">
         <p className="text-[15px] font-medium text-white/80">Trust & Transparency</p>
         <h2 className="mt-3 text-[40px] leading-[1.05] font-medium tracking-[-0.035em] md:text-[56px]">
-          Built to Institutional Standards
+          Trust the Code,
           <br />
-          In Everything We Ship
+          Not the Team
         </h2>
         <div className="mt-14 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] md:mt-40">
           {PRINCIPLES.map((p, k) => {
@@ -196,11 +196,11 @@ export function Rails() {
   return (
     <section id="rails" className="scroll-mt-24 overflow-hidden bg-black py-20 text-white md:py-28">
       <div className="wrap text-center">
-        <p className="text-[15px] font-medium text-white/70">Valtora Rails</p>
+        <p className="text-[15px] font-medium text-white/70">Already on-chain</p>
         <h2 className="mt-3 text-[40px] leading-[1.05] font-medium tracking-[-0.035em] md:text-[56px]">
-          Our Technology,
+          Real Assets,
           <br />
-          <span className="text-white/50">Your Tokens</span>
+          <span className="text-white/50">Verified in One Place</span>
         </h2>
       </div>
       <div className="relative mt-14 flex h-[120px] items-center justify-center [--rail-step:88vw] md:mt-20 md:[--rail-step:34vw]">
@@ -210,20 +210,18 @@ export function Rails() {
             className="absolute flex items-center gap-4 whitespace-nowrap transition-all duration-700 ease-[var(--ease-soft)]"
             style={{ transform: `translateX(calc(${d} * var(--rail-step))) scale(${d === 0 ? 1 : 0.62})`, opacity: Math.abs(d) === 2 ? 0.35 : d === 0 ? 1 : 0.55 }}
           >
-            <span className="grid size-14 place-items-center rounded-full font-mono text-[15px] font-medium md:size-[92px] md:text-[22px]" style={{ background: d === 0 ? "#fff" : t.color, color: d === 0 ? t.color : "#fff" }}>
-              {t.mark}
-            </span>
+            <img src={`/tiles/${t.tile}.webp`} alt="" className="size-14 rounded-2xl md:size-[92px] md:rounded-[26px]" />
             <span className={`text-[48px] font-medium tracking-[-0.03em] md:text-[96px] ${d === 0 ? "text-white" : "text-white/45"}`}>{t.name}</span>
           </div>
         ))}
       </div>
       <div className="wrap mt-14 text-center md:mt-20">
         <p className="mx-auto max-w-[440px] font-serif text-[18px] leading-[1.35] text-white/70 md:text-[20px]">
-          Valtora Rails is our planned toolkit for issuers of tokenized funds and dollars: always-on minting and
-          redemption for their holders, settled on Robinhood Chain.
+          Equities, treasury bills, gold, silver and oil already trade on Robinhood Chain as official stock tokens. The
+          terminal verifies every one and prices it against its Chainlink feed.
         </p>
-        <Link href="/contact" className="btn btn-light mt-8">
-          Contact Us
+        <Link href="/terminal" className="btn btn-light mt-8">
+          Open the Terminal
         </Link>
       </div>
     </section>

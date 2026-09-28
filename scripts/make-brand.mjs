@@ -14,7 +14,7 @@ const SRC = fileURLToPath(new URL("./mark-source.webp", import.meta.url));
 const BANNER = fileURLToPath(new URL("./banner-source.webp", import.meta.url));
 const OUT = fileURLToPath(new URL("../public/brand/", import.meta.url));
 const APP = fileURLToPath(new URL("../src/app/", import.meta.url));
-const PLATE = { r: 16, g: 8, b: 40, alpha: 1 }; // #100828, the plate colour of the mark
+const PLATE = { r: 35, g: 27, b: 55, alpha: 1 }; // #231b37, sampled from the owner-supplied plate
 
 // The source mark sits in a large transparent canvas; trim it so it fills UI slots.
 const trimmed = await sharp(SRC).trim().png().toBuffer();

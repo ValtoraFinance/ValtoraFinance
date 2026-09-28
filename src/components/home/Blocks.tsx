@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { BRAND } from "@/config/brand";
 import { GithubIcon, XIcon } from "@/components/icons";
-import { NewsletterForm } from "@/components/home/NewsletterForm";
+import { FollowX } from "@/components/home/FollowX";
 
 export function Intro() {
   return (
     <section className="relative z-10 -mt-[16vh] pb-6">
       <p className="reveal wrap mx-auto max-w-[560px] text-center font-serif text-[19px] leading-[1.4] md:text-[20px]">
-        At Valtora, we are designing platforms, assets and infrastructure that carry financial markets onto Robinhood
-        Chain, starting with {BRAND.symbol}.
+        Valtora makes the real assets already on Robinhood Chain easy to verify, compare and use, starting with a terminal
+        that works on day one.
       </p>
     </section>
   );
@@ -47,13 +47,13 @@ export function EcosystemArc() {
         </svg>
         <p className="reveal relative text-[15px] font-medium text-white/70">Valtora Ecosystem</p>
         <h2 className="reveal relative mt-5 text-[40px] leading-[1.02] font-medium tracking-[-0.035em] md:text-[48px]">
-          Building the Bridge
+          Built on What
           <br />
-          <span className="text-white/50">Between Wall Street & Web3</span>
+          <span className="text-white/50">Already Works</span>
         </h2>
         <p className="reveal relative mt-6 max-w-[560px] font-serif text-[18px] leading-[1.35] text-white/70 md:text-[20px]">
-          We want to work with teams who share one goal: making well-built financial products reachable from any
-          wallet. See which chains, wallets and tools already work with Valtora, and which seats are still open.
+          Chainlink prices, Morpho lends, Uniswap trades. Valtora connects protocols that are already live and audited on
+          Robinhood Chain instead of rebuilding them, and only writes code where nothing exists yet.
         </p>
         <Link href="/ecosystem" className="btn btn-light relative mt-10">
           Explore the Ecosystem
@@ -72,20 +72,22 @@ export function Newsletter() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/60" />
           <div className="relative flex flex-col items-center px-5 py-20 text-center text-white md:py-32">
             <h2 className="text-[36px] leading-[1.05] font-medium tracking-[-0.035em] md:text-[48px]">
-              The Future of Finance
+              Follow the Build
               <br />
-              <span className="text-white/60">Subscribe for launch news,</span>
+              <span className="text-white/60">Milestones, terminal findings</span>
               <br />
-              <span className="text-white/60">research and releases.</span>
+              <span className="text-white/60">and every treasury payment.</span>
             </h2>
-            <NewsletterForm />
+            <FollowX />
             <div className="mt-8 flex items-center gap-5 text-white/80">
               <a href={BRAND.x} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on X`} className="hover:text-white">
                 <XIcon className="size-5" />
               </a>
-              <a href={BRAND.github} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on GitHub`} className="hover:text-white">
-                <GithubIcon className="size-5" />
-              </a>
+              {BRAND.github && (
+                <a href={BRAND.github} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on GitHub`} className="hover:text-white">
+                  <GithubIcon className="size-5" />
+                </a>
+              )}
             </div>
           </div>
         </div>

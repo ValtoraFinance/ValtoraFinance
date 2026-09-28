@@ -17,9 +17,13 @@ export function SiteFooter() {
                 <ul className="flex flex-col gap-1.5">
                   {col.links.map((link) => (
                     <li key={link.label}>
-                      <Link href={link.href} className="inline-flex items-center gap-1 text-[15px] text-white/60 transition-colors hover:text-white">
+                      <Link
+                        href={link.href}
+                        {...(link.external ? { target: "_blank", rel: "noreferrer" } : {})}
+                        className="inline-flex items-center gap-1 text-[15px] text-white/60 transition-colors hover:text-white"
+                      >
                         {link.label}
-                        {link.href.startsWith("mailto:") ? <ArrowUpRight className="size-3.5" /> : null}
+                        {link.external ? <ArrowUpRight className="size-3.5" /> : null}
                       </Link>
                     </li>
                   ))}
@@ -49,8 +53,8 @@ export function SiteFooter() {
           <p>
             <span className="text-white/70">Important:</span> {BRAND.symbol} is a crypto token on {CHAIN.name}. It is not a
             share, a bond, a deposit or a unit in any fund, and it gives no claim on the assets described on this site.
-            Every product described here (Valtora Equities, VYLD and VTSY) is in design and not yet issued or offered to
-            anyone. Figures shown before launch are placeholders or illustrative models, never a record or a forecast.
+            Market data on this site is read from public sources and can be delayed or wrong. Products marked as roadmap
+            milestones do not exist yet and take no deposits.
           </p>
           <p>
             Nothing on this site is an offer to sell, a solicitation to buy, or investment, legal or tax advice. Valtora
@@ -84,9 +88,11 @@ export function SiteFooter() {
           <a href={BRAND.x} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on X`} className="hover:text-white">
             <XIcon />
           </a>
-          <a href={BRAND.github} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on GitHub`} className="hover:text-white">
-            <GithubIcon />
-          </a>
+          {BRAND.github && (
+            <a href={BRAND.github} target="_blank" rel="noreferrer" aria-label={`${BRAND.name} on GitHub`} className="hover:text-white">
+              <GithubIcon />
+            </a>
+          )}
         </div>
       </div>
     </footer>

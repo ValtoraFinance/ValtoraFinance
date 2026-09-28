@@ -28,10 +28,10 @@ export function Notice() {
       className="fixed right-3 bottom-3 left-3 z-[60] max-w-[464px] rounded-xl bg-[#3a3942]/95 p-4 text-[12.5px] leading-[1.5] text-white shadow-2xl backdrop-blur-md sm:right-auto sm:bottom-5 sm:left-5"
     >
       <p>
-        This is the website of {BRAND.name}, a crypto token project on Robinhood Chain. {BRAND.symbol} is a crypto
-        token, not a security, deposit or fund unit. The tokenized products described here are planned and not yet
-        offered anywhere; figures are placeholders or illustrative. Nothing here is investment advice or an offer to
-        buy or sell anything. Crypto assets can lose all of their value.
+        This is the website of {BRAND.name}, a crypto token project on Robinhood Chain run by an anonymous team.{" "}
+        {BRAND.symbol} is a crypto token, not a security, deposit or fund unit. Market data here is read from public
+        sources; roadmap products do not exist yet. Nothing here is investment advice or an offer to buy or sell
+        anything. Crypto assets can lose all of their value.
       </p>
       <div className="mt-3 flex justify-end">
         <button

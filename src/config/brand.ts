@@ -17,9 +17,10 @@ export const BRAND = {
   slogan: "A New Chapter for Global Finance.",
   description:
     "Valtora Finance is a Robinhood Chain token project building toward on-chain access to real-world assets: equities, yield notes and treasury exposure, issued as transparent tokens.",
-  x: "https://x.com/valtora",
-  xHandle: "@valtora",
-  github: "https://github.com/ValtoraFinance/ValtoraFinance",
+  x: "https://x.com/valtorafinance",
+  xHandle: "@valtorafinance",
+  /** Public GitHub repo. Empty hides every GitHub link on the site. */
+  github: "" as string,
   email: "team@valtorafinance.xyz",
   ca: CA,
 } as const;
@@ -39,7 +40,8 @@ export const CHAIN = {
   rpc: process.env.NEXT_PUBLIC_ROBINHOOD_RPC_URL || PUBLIC_RPC,
   /** Second public endpoint, used for reads only when the first one fails. */
   fallbackRpc: "https://robinhood-rpc.publicnode.com",
-  explorer: "https://robinhoodchain.blockscout.com",
+  explorer: "https://robin.etherscan.io",
+  explorerName: "Robin Etherscan",
 } as const;
 
 /** RPC for server code: the private endpoint when set, else the public one. */
@@ -65,6 +67,9 @@ export function explorerAddress(address: string) {
 }
 export function explorerToken(address: string) {
   return `${CHAIN.explorer}/token/${address}`;
+}
+export function explorerTx(hash: string) {
+  return `${CHAIN.explorer}/tx/${hash}`;
 }
 export function shortAddress(address: string, head = 6, tail = 4) {
   if (address.length <= head + tail + 2) return address;

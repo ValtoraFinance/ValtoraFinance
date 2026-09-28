@@ -88,8 +88,8 @@ function TwoCoins({ accent, soft }: P) {
           <circle key={`${i}-${k}`} cx={230 + i * 20} cy={200 - k * 16} r="7" fill={accent} fillOpacity={0.5 + k * 0.15} />
         )),
       )}
-      <text x="50" y="60" fill="#fff" fontFamily="system-ui" fontSize="22" fontWeight="600">Accruing</text>
-      <text x="230" y="60" fill="#fff" fontFamily="system-ui" fontSize="22" fontWeight="600">Rebasing</text>
+      <text x="50" y="60" fill="#fff" fontFamily="system-ui" fontSize="22" fontWeight="600">Oracle</text>
+      <text x="230" y="60" fill="#fff" fontFamily="system-ui" fontSize="22" fontWeight="600">Market</text>
     </g>
   );
 }

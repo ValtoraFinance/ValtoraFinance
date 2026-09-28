@@ -9,16 +9,19 @@ import {
   useState,
 } from "react";
 import { CHAIN as chain } from "@/config/brand";
+import { WALLETCONNECT_PROJECT_ID } from "@/config/wallets";
 import { useLocalStore } from "@/components/wallet/useLocalStore";
+import { walletConnectProvider } from "@/components/wallet/walletconnect";
 import { formatEth, rpc } from "@/lib/rpc";
 
 /**
  * Wallet connection over EIP-6963. Connecting shares an address and reports
- * which network the wallet is pointed at. Nothing here asks for a signature
- * and no key ever reaches this application.
+ * which network the wallet is pointed at. Transactions are only sent through
+ * sendTransaction, from an explicit button, and no key ever reaches this app.
  */
 
 export const ROBINHOOD_CHAIN_ID = chain.id;
+export const WALLETCONNECT_RDNS = "walletconnect";
 const CHAIN_ID_HEX = `0x${chain.id.toString(16)}`;
 
 type Eip1193Provider = {
@@ -64,6 +67,8 @@ type WalletState = {
   switchNetwork: () => Promise<void>;
   disconnect: () => void;
   clearError: () => void;
+  /** Sends a transaction from the connected account; refuses off Robinhood Chain. */
+  sendTransaction: (tx: { to: string; data: string; value?: bigint }) => Promise<`0x${string}`>;
 };
 
 const WalletContext = createContext<WalletState | null>(null);
@@ -131,13 +136,26 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     window.addEventListener("eip6963:announceProvider", onAnnounce);
     window.dispatchEvent(new Event("eip6963:requestProvider"));
 
+    // WalletConnect reaches mobile and desktop wallets over a QR code. Its SDK
+    // loads on first use, so listing it here costs nothing.
+    if (WALLETCONNECT_PROJECT_ID) {
+      add({
+        uuid: WALLETCONNECT_RDNS,
+        rdns: WALLETCONNECT_RDNS,
+        name: "WalletConnect",
+        icon: "/wallets/walletconnect.webp",
+        provider: walletConnectProvider,
+        unsupported: null,
+      });
+    }
+
     // Older wallets only inject `window.ethereum`. Offer it when nothing
     // announced itself, so those visitors are not told they have no wallet.
     const legacy = window.setTimeout(() => {
       const injected = (window as { ethereum?: Eip1193Provider }).ethereum;
       if (!injected) return;
       setWallets((current) =>
-        current.length
+        current.some((entry) => entry.rdns !== WALLETCONNECT_RDNS)
           ? current
           : [
               {
@@ -327,6 +345,23 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
 
   const clearError = useCallback(() => setError(null), []);
 
+  const sendTransaction = useCallback(
+    async (tx: { to: string; data: string; value?: bigint }) => {
+      if (!active || !remembered) throw new Error("Connect a wallet first.");
+      // Ask the wallet, not our state: it may have moved networks since.
+      if ((await readChainId(active.provider)) !== chain.id) throw new Error(`Switch your wallet to ${chain.name} first.`);
+      try {
+        return (await active.provider.request({
+          method: "eth_sendTransaction",
+          params: [{ from: remembered.address, to: tx.to, data: tx.data, value: `0x${(tx.value ?? 0n).toString(16)}` }],
+        })) as `0x${string}`;
+      } catch (cause) {
+        throw new Error(describe(cause, "The wallet did not send the transaction."));
+      }
+    },
+    [active, remembered],
+  );
+
   const address = remembered?.address ?? null;
   const walletName = remembered?.name ?? null;
 
@@ -368,6 +403,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
       switchNetwork,
       disconnect,
       clearError,
+      sendTransaction,
     }),
     [
       wallets,
@@ -382,6 +418,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
       switchNetwork,
       disconnect,
       clearError,
+      sendTransaction,
     ],
   );
 

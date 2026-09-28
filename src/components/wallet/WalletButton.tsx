@@ -20,7 +20,8 @@ import {
   X,
 } from "lucide-react";
 import { BRAND, CHAIN as chain, explorerAddress, shortAddress } from "@/config/brand";
-import { useWallet } from "@/components/wallet/WalletProvider";
+import { WALLET_CATALOG, catalogIcon } from "@/config/wallets";
+import { WALLETCONNECT_RDNS, useWallet, type DiscoveredWallet } from "@/components/wallet/WalletProvider";
 
 /* ------------------------------------------------------------------ */
 /* One dialog for the whole site. Every "Launch App" / "Connect" button */
@@ -46,8 +47,19 @@ export function useWalletModal() {
   return context;
 }
 
+const isMobile = () => /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+function WalletIcon({ src }: { src: string | null }) {
+  return src ? (
+    <img src={src} alt="" className="size-8 shrink-0 rounded-lg" />
+  ) : (
+    <Wallet className="size-8 shrink-0 rounded-lg bg-white/10 p-1.5" />
+  );
+}
+
 function WalletDialog({ onClose }: { onClose: () => void }) {
   const { wallets, connect, connecting, error, clearError } = useWallet();
+  const [pending, setPending] = useState<string | null>(null);
 
   const close = useCallback(() => {
     onClose();
@@ -69,6 +81,24 @@ function WalletDialog({ onClose }: { onClose: () => void }) {
     };
   }, [close]);
 
+  const installed = wallets
+    .filter((w) => w.rdns !== WALLETCONNECT_RDNS)
+    .sort((a, b) => Number(Boolean(a.unsupported)) - Number(Boolean(b.unsupported)));
+  const walletConnect = wallets.find((w) => w.rdns === WALLETCONNECT_RDNS) ?? null;
+  const detected = new Set(wallets.map((w) => w.rdns));
+  const more = WALLET_CATALOG.filter((c) => !c.rdns.some((r) => detected.has(r)));
+  const mobile = isMobile();
+  const here = typeof window === "undefined" ? BRAND.url : window.location.href;
+
+  async function pick(wallet: DiscoveredWallet) {
+    setPending(wallet.rdns);
+    const ok = await connect(wallet);
+    setPending(null);
+    if (ok) onClose();
+  }
+
+  const row = "flex w-full items-center gap-3 rounded-xl bg-white/[0.06] px-3.5 py-3 text-left text-[15px]";
+
   // The header blurs what is behind it, and a backdrop filter turns it into
   // the containing block for fixed children. Rendered in place, the dialog
   // would be clipped to the header, so it always goes to <body>.
@@ -80,12 +110,12 @@ function WalletDialog({ onClose }: { onClose: () => void }) {
       className="fixed inset-0 z-[70] flex items-end justify-center sm:items-center sm:p-4"
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={close} />
-      <div className="relative w-full max-w-sm overflow-hidden rounded-t-2xl bg-ink text-white shadow-2xl sm:rounded-2xl">
+      <div className="relative flex max-h-[92dvh] w-full max-w-[400px] flex-col overflow-hidden rounded-t-2xl bg-ink text-white shadow-2xl sm:rounded-2xl">
         <div className="flex items-center justify-between px-5 pt-5">
           <div className="flex items-center gap-2.5">
             <img src="/brand/valtora-plate.webp" alt="" className="size-7 rounded-md" />
             <h2 id="wallet-dialog-title" className="text-lg font-medium tracking-tight">
-              Launch App
+              Connect a wallet
             </h2>
           </div>
           <button
@@ -99,57 +129,98 @@ function WalletDialog({ onClose }: { onClose: () => void }) {
         </div>
 
         <p className="px-5 pt-3 font-serif text-[15px] leading-relaxed text-white/65">
-          Connect a wallet to open the {BRAND.short} app on {chain.name}. Connecting
-          only shares your address. It never asks for a signature, and your keys
-          stay in your wallet.
+          Any EVM wallet that can add a custom network works on {chain.name}. Connecting only shares your address; a
+          transaction is only requested when you swap on the Treasury Route.
         </p>
 
-        <ul className="flex flex-col gap-2 p-4">
-          {wallets.length === 0 ? (
-            <li className="rounded-xl border border-dashed border-white/15 px-4 py-6 text-center text-sm leading-relaxed text-white/60">
-              <span className="mb-1.5 block font-medium text-white">No wallet detected</span>
-              No browser wallet announced itself. Install or unlock one, such as
-              MetaMask or Rabby, then open this panel again.
-            </li>
+        <div className="min-h-0 flex-1 overflow-y-auto px-4 pt-4 pb-2">
+          {installed.length ? (
+            <>
+              <p className="px-1 pb-2 text-[12px] font-medium text-white/45">Detected in this browser</p>
+              <ul className="flex flex-col gap-2">
+                {installed.map((wallet) => (
+                  <li key={wallet.rdns}>
+                    <button
+                      type="button"
+                      disabled={connecting || Boolean(wallet.unsupported)}
+                      onClick={() => pick(wallet)}
+                      className={`${row} cursor-pointer transition-colors enabled:hover:bg-white/[0.12] disabled:cursor-not-allowed disabled:opacity-50`}
+                    >
+                      <WalletIcon src={wallet.icon || catalogIcon(wallet.rdns)} />
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-medium">{wallet.name}</span>
+                        <span className="block text-xs text-white/50">
+                          {wallet.unsupported ? `Not supported · ${wallet.unsupported}` : "Installed"}
+                        </span>
+                      </span>
+                      {pending === wallet.rdns ? <span className="text-xs text-white/50">Check wallet…</span> : null}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </>
           ) : null}
-          {wallets.map((wallet) => (
-            <li key={wallet.rdns}>
-              <button
-                type="button"
-                disabled={connecting || Boolean(wallet.unsupported)}
-                onClick={async () => {
-                  if (await connect(wallet)) onClose();
-                }}
-                className="flex w-full cursor-pointer items-center gap-3 rounded-xl bg-white/[0.06] px-3.5 py-3 text-left text-[15px] transition-colors enabled:hover:bg-white/[0.12] disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {wallet.icon ? (
-                  <img src={wallet.icon} alt="" className="size-7 rounded-md" />
-                ) : (
-                  <Wallet className="size-7 rounded-md bg-white/10 p-1.5" />
-                )}
-                <span className="min-w-0 flex-1">
-                  <span className="block font-medium">{wallet.name}</span>
-                  {wallet.unsupported ? (
-                    <span className="block text-xs text-white/50">
-                      Not supported · {wallet.unsupported}
-                    </span>
-                  ) : null}
-                </span>
-                {connecting ? <span className="text-xs text-white/50">Check wallet…</span> : null}
-              </button>
-            </li>
-          ))}
-        </ul>
+
+          <p className="px-1 pt-4 pb-2 text-[12px] font-medium text-white/45">Mobile and other wallets</p>
+          {walletConnect ? (
+            <button
+              type="button"
+              disabled={connecting}
+              onClick={() => pick(walletConnect)}
+              className={`${row} cursor-pointer transition-colors enabled:hover:bg-white/[0.12] disabled:opacity-50`}
+            >
+              <WalletIcon src="/wallets/walletconnect.webp" />
+              <span className="min-w-0 flex-1">
+                <span className="block font-medium">WalletConnect</span>
+                <span className="block text-xs text-white/50">Scan a QR code with a mobile wallet</span>
+              </span>
+              {pending === WALLETCONNECT_RDNS ? <span className="text-xs text-white/50">Opening…</span> : null}
+            </button>
+          ) : (
+            <div className={`${row} opacity-50`}>
+              <WalletIcon src="/wallets/walletconnect.webp" />
+              <span className="min-w-0 flex-1">
+                <span className="block font-medium">WalletConnect</span>
+                <span className="block text-xs text-white/50">Not configured on this site yet</span>
+              </span>
+            </div>
+          )}
+
+          {more.length ? (
+            <>
+              <p className="px-1 pt-4 pb-2 text-[12px] font-medium text-white/45">
+                {mobile ? "Open this site in a wallet app" : "Not installed · supports Robinhood Chain"}
+              </p>
+              <ul className="flex flex-col gap-2">
+                {more.map((w) => {
+                  const href = mobile && w.deepLink ? w.deepLink(here) : w.install;
+                  const label = mobile && w.deepLink ? "Open" : "Install";
+                  return (
+                    <li key={w.id}>
+                      <a href={href} target="_blank" rel="noreferrer" className={`${row} transition-colors hover:bg-white/[0.12]`}>
+                        <WalletIcon src={`/wallets/${w.id}.webp`} />
+                        <span className="min-w-0 flex-1 font-medium">{w.name}</span>
+                        <span className="inline-flex items-center gap-1 text-xs text-white/60">
+                          {label} <ExternalLink className="size-3" />
+                        </span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          ) : null}
+        </div>
 
         {error ? (
-          <p className="mx-4 mb-3 flex items-start gap-2 rounded-lg bg-down/15 px-3 py-2.5 text-[13px] leading-relaxed text-[#ff9aa0]">
+          <p className="mx-4 mt-2 mb-1 flex items-start gap-2 rounded-lg bg-down/15 px-3 py-2.5 text-[13px] leading-relaxed text-[#ff9aa0]">
             <TriangleAlert className="mt-0.5 size-3.5 shrink-0" />
             <span>{error}</span>
           </p>
         ) : null}
 
-        <p className="border-t border-white/10 px-5 py-3.5 font-mono text-[11px] text-white/45">
-          {chain.name} · chain id {chain.id}
+        <p className="mt-2 border-t border-white/10 px-5 py-3.5 font-mono text-[11px] text-white/45">
+          {chain.name} · chain id {chain.id} · added to your wallet on connect
         </p>
       </div>
     </div>,
@@ -294,11 +365,11 @@ function AccountMenu({ compact }: { compact: boolean }) {
               <div className="flex flex-col p-1.5 text-[14px]">
                 <a
                   role="menuitem"
-                  href="/app"
+                  href="/terminal"
                   className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-white/75 transition-colors hover:bg-white/10 hover:text-white"
                 >
                   <Wallet className="size-4" />
-                  Open app
+                  Open terminal
                 </a>
                 <button
                   type="button"
@@ -371,8 +442,8 @@ export function LaunchButton({
   }
   if (address) {
     return (
-      <a href="/app" className={`btn ${className}`}>
-        Open app · <span className="font-mono text-[0.85em]">{shortAddress(address, 4, 4)}</span>
+      <a href="/terminal" className={`btn ${className}`}>
+        Terminal · <span className="font-mono text-[0.85em]">{shortAddress(address, 4, 4)}</span>
       </a>
     );
   }
